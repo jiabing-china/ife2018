@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+// 编码
+// 今天最后一个练习，在你的简历中，实现一个，当用户访问页面的时候，根据当前时间，在页面中输出不同的问候语。
+
+// 比如早上的时候，输出早上好，晚上的时候是晚上好。
+var date = new Date();
+var nowhour = date.getHours();
+debugger;
+if((0<nowhour&&nowhour<=6)||(18<nowhour&&nowhour<=24)){
+    console.log("深夜好！");
+}
+else if(6<nowhour&&nowhour<=12){
+    console.log("早上好！");
+}
+else if(12<nowhour&&nowhour<=18){
+    console.log("下午好！");
+}
+else{
+    console.log("emmm!");
+}
+
+</script>
+</html>

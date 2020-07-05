@@ -37,12 +37,16 @@
         }
         divide.onclick = function(){
             getnums();
+            if(first_number == 0){
+                console.log("输入有错误！除数不能为0");
+                
+            }
             p.innerHTML = first_number/second_number;
         }
        
        function getnums(){
-         first_number =parseInt(document.querySelector('#first-number').value);
-         second_number = parseInt(document.querySelector('#second-number').value);
+         first_number =parseFloat(document.querySelector('#first-number').value);
+         second_number = parseFloat(document.querySelector('#second-number').value);
        }
         
 
