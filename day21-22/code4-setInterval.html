@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
+    <button id="fade-btn">淡出</button>
+    <script>
+        //         针对以上 HTML，分别使用 
+        // setTimeout 
+        // 和 setInterval 实现以下功能：
+        // 写两遍
+        // 点击按钮时，开始改变 fade-obj 的透明度，开始一个淡出（逐渐消失）动画，直到透明度为0
+        // 在动画过程中，按钮的状态变为不可点击
+        // 在动画结束后，按钮状态恢复，且文字变成“淡入”
+        // 在 按钮显示 淡入 的状态时，点击按钮，开始一个“淡入”（逐渐出现）的动画，和上面类似按钮不可点，直到透明度完全不透明
+        // 淡入动画结束后，按钮文字变为“淡出”
+        // 暂时不要使用 CSS animation （以后我们再学习）
+        var fadeobj = document.getElementById('fade-obj');
+        var fadebtn = document.getElementById('fade-btn');
+        var flag = 0;
+        fadebtn.onclick = function () {
+            var btncontent = fadebtn.innerHTML;
+            console.log();
+            if (btncontent == "淡出") {
+                objhidden();
+            }
+            else {
+                objshow();
+            }
+        }
+        function objhidden() {
+            var x = 1;
+            var changebc = setInterval(change, 1000);
+            function change() {
+                x = (x - 0.2).toFixed(1);
+                if (x < 0) {
+                    fadebtn.innerHTML = "淡入";
+                    clearInterval(changebc);
+                    // return false;这个也行
+                   
+                }
+                if (x >= 0) {
+                    console.log(x);
+                    
+                    fadeobj.style.backgroundColor = 'rgb(0, 0, 0,' + x + ')';
+                }
+            }
+        }
+        function objshow() {
+            var y = 0;
+            var re = setInterval(rebc, 1000);
+            function rebc() {
+                debugger;
+                y = (y + 0.2);
+                if (y >= 1) {
+                    fadebtn.innerHTML = "淡出";
+                    clearInterval(re);
+                    // return false;这个也行
+                }
+                if (y < 1) {
+                    console.log(y);
+                    fadeobj.style.backgroundColor = 'rgb(0, 0, 0,' + y + ')';
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

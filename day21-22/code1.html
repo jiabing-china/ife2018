@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="name" type="text" onkeydown="return submit(event)">
+    <button id="submit-btn">Submit</button>
+
+</body>
+<script>
+    //     在HTML中增加上面的代码，然后通过JavaScript编写如下功能：
+
+    // 当点击按钮 submit-btn 时，在console中输出 name 中的内容
+    // 在输入过程中，如果按回车键，则同样执行上一条的需求
+    // 在输入过程中，如果按 ESC 键，则把输入框中的内容清空
+    //（13为Enter，9为Tab，27为Esc)
+    var btn = document.getElementById('submit-btn');
+
+    btn.onclick = getinput;
+
+    function getinput() {
+        name = document.getElementById('name').value;
+        console.log(name);
+    }
+    function submit(event) {
+
+        if (event.keyCode === 13) {
+            getinput();
+        }
+
+        if (event.keyCode === 27) {
+            debugger;
+            document.getElementById('name').value = ' ';
+            console.dir(111);
+        }
+    }
+
+
+
+
+
+
+</script>
+
+</html>

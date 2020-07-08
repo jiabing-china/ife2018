@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #erik {
+            width: 480px;
+            height: 480px;
+            background: url("./erik_ce204002.jpg") no-repeat;
+            background-position: 0 -480px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="erik"></div>
+</body>
+
+</html>
+
+<script>
+    //         学习来实现一个帧动画：
+
+    // 基于一个我们提供的图片，实现 IFE2016中Erik笑容的动画
+    // 图片地址：http://ife.baidu.com/2016/static/img/erik_ce204002.jpg
+    // 注意，依然不要使用 CSS animation，因为我们这里要学习的是使用 JavaScript 来操作 CSS，而不是为了完成这个任务。
+    // 2020年7月7日22:47:55
+    // 获取不到内联样式的dom
+    // 可以获取到行内样式的dom
+    // 明早再看一下demo
+    //问题 变量名与id相同时出现问题
+    var h = 0;
+    var erikpic = document.getElementById('erik');
+    var t = setInterval(changepic, 50);
+    var g;
+    function changepic() {
+        // console.log(h);
+
+        h = h - 480;
+        // console.log(h);
+         erikpic.style.backgroundPositionY = h + "px";
+        if (h == (-7680)) {
+            clearInterval(t);
+            g = setInterval(returnpic, 50);
+            
+        }
+    }
+    function returnpic(){
+        h = h + 480;
+        // console.log(h);
+        erikpic.style.backgroundPositionY = h + "px";
+        if (h == 0) {
+            clearInterval(g);
+            t = setInterval(changepic, 50);
+            
+        }
+    }
+</script>
