@@ -123,10 +123,10 @@
                 // 100-40-20:40:30,55
                 // split(/-|:|,/); 
                 // 2020年7月9日22:19:31
-                // 有问题，明早研究一下
-                result.innerHTML = stra.value.split(/\r?\n\s*/).length;
+                // 有问题，明早研究一下 自动换行如何捕捉到？
+                result.innerHTML = stra.value.trim().split(/\r?\n|\r/g).length;
                 // result.innerHTML =stra.value.split(/\n/).length;
-                // console.dir(stra.createTextRange());
+                console.log(stra.value.trim().split(/\r?\n|\r/g));
 
 
             }
@@ -151,8 +151,10 @@
         }
         // 把所选输入框中内容的半角空格全部去除
         btn[10].onclick = function(){
+            // \s	查找空白字符
             gettextarea();
-            result.innerHTML = (stra.value).replace(/(^\s*)|(\s*$)/g, '');
+            stra.value = stra.value.trim();
+            result.innerHTML = (stra.value).replace(/\s+/g,"");;
         }
         // 把所选输入框中内容的a全部替换成另外一个输入框中的内容
           // 2020年7月9日22:19:31

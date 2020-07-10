@@ -1,90 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     <script>
-    var tree = {
-    "id": 0,
-    "name": "root",
-    "left": {
-        "id": 1,
-        "name": "Simon",
-        "left": {
-            "id": 3,
-            "name": "Carl",
+        var tree = {
+            "id": 0,
+            "name": "root",
             "left": {
-                "id": 7,
-                "name": "Lee",
+                "id": 1,
+                "name": "Simon",
                 "left": {
-                    "id": 11,
-                    "name": "Fate"
+                    "id": 3,
+                    "name": "Carl",
+                    "left": {
+                        "id": 7,
+                        "name": "Lee",
+                        "left": {
+                            "id": 11,
+                            "name": "Fate"
+                        }
+                    },
+                    "right": {
+                        "id": 8,
+                        "name": "Annie",
+                        "left": {
+                            "id": 12,
+                            "name": "Saber"
+                        }
+                    }
+                },
+                "right": {
+                    "id": 4,
+                    "name": "Tony",
+                    "left": {
+                        "id": 9,
+                        "name": "Candy"
+                    }
                 }
             },
             "right": {
-                "id": 8,
-                "name": "Annie",
+                "id": 2,
+                "name": "right",
                 "left": {
-                    "id": 12,
-                    "name": "Saber"
+                    "id": 5,
+                    "name": "Carl",
+                },
+                "right": {
+                    "id": 6,
+                    "name": "Carl",
+                    "right": {
+                        "id": 10,
+                        "name": "Kai"
+                    }
                 }
             }
-        },
-        "right": {
-            "id": 4,
-            "name": "Tony",
-            "left": {
-                "id": 9,
-                "name": "Candy"
-            }
         }
-    },
-    "right": {
-        "id": 2,
-        "name": "right",
-        "left": {
-            "id": 5,
-            "name": "Carl",
-        },
-        "right": {
-            "id": 6,
-            "name": "Carl",
-            "right": {
-                "id": 10,
-                "name": "Kai"
-            }        
+        var m = new Map();
+        m.set(tree.id, tree.name);//0
+        m.set(tree.left.id, tree.left.name);//1
+        m.set(tree.right.id, tree.right.name);//2
+        m.set(tree.left.left.id, tree.left.left.name);//3
+        m.set(tree.left.right.id, tree.left.right.name);//4
+        m.set(tree.right.left.id, tree.right.left.name);//5
+        m.set(tree.right.right.id, tree.right.right.name);//6
+        m.set(tree.left.left.left.id, tree.left.left.left.name);//7
+        m.set(tree.left.left.right.id, tree.left.left.right.name);//8
+        m.set(tree.left.right.left.id, tree.left.right.left.name);//9
+        m.set(tree.right.right.right.id, tree.right.right.right.name);//10
+        m.set(tree.left.left.left.left.id, tree.left.left.left.left.name);//11
+        m.set(tree.left.left.right.left.id, tree.left.left.right.left.name);//12
+        // console.log(m);
+        console.log(tree.id + " " + tree.name);//0
+        console.log(tree.left.id + " " + tree.left.name);//1
+        console.log(tree.right.id + " " + tree.right.name);//2
+        console.log(tree.left.left.id + " " + tree.left.left.name);//3
+        console.log(tree.left.right.id + " " + tree.left.right.name);//4
+        console.log(tree.right.left.id + " " + tree.right.left.name);//5
+        console.log(tree.right.right.id + " " + tree.right.right.name);//6
+        console.log(tree.left.left.left.id + " " + tree.left.left.left.name);//7
+        console.log(tree.left.left.right.id + " " + tree.left.left.right.name);//8
+        console.log(tree.left.right.left.id + " " + tree.left.right.left.name);//9
+        console.log(tree.right.right.right.id + " " + tree.right.right.right.name);//10
+        console.log(tree.left.left.left.left.id + " " + tree.left.left.left.left.name);//11
+        console.log(tree.left.left.right.left.id + " " + tree.left.left.right.left.name);//12
+        // 假设id和name均不会重复，根据输入name找到对应的id
+        //这道题有问题，id5和6都是重复的，都是Carl;
+        findtree('Kai',tree);
+        function findtree(name,t){
+            // debugger;
+                if(t.name == name){
+                    console.log(t.id);                  
+                    return;
+                }
+                if(t.left){
+                    findtree(name,t.left);
+                }
+                if(t.right){
+                    findtree(name,t.right);
+                }
+            
         }
-    }
-}
+        findIdByName("root");
+        findIdByName("Simon");
+        findIdByName("Saber");
+        function findIdByName(name) {
+            // for (var i = 0; i < m.size; i++) {
+            //     if (m.get(i) == name) {
+            //         console.log(i);
+            //     }
+            // }
+        }
+        
+        findNameById(1,tree);
+        findNameById(12,tree);
+        // 假设id和name均不会重复，根据输入id找到对应的name
+        function findNameById(id,t) {
+            if(t.id == id){
+                    console.log(t.name);                  
+                    return;
+                }
+                if(t.left){
+                    findNameById(id,t.left);
+                }
+                if(t.right){
+                    findNameById(id,t.right);
+                }
+        }
 
-// 假设id和name均不会重复，根据输入name找到对应的id
-function findIdByName(name) {
+        // 把这个对象中所有的名字以“前序遍历”的方式全部输出到console中
+        function getListWithDLR() {
 
-}
+        }
 
-// 假设id和name均不会重复，根据输入id找到对应的name
-function findNameById(id) {
+        // 把这个对象中所有的名字以“中序遍历”的方式全部输出到console中
+        function getListWithLDR() {
 
-}
+        }
 
-// 把这个对象中所有的名字以“前序遍历”的方式全部输出到console中
-function getListWithDLR() {
+        // 把这个对象中所有的名字以“后序遍历”的方式全部输出到console中
+        function getListWithLRD() {
 
-}
-
-// 把这个对象中所有的名字以“中序遍历”的方式全部输出到console中
-function getListWithLDR() {
-
-}
-
-// 把这个对象中所有的名字以“后序遍历”的方式全部输出到console中
-function getListWithLRD() {
-
-}
+        }
 // 有如上对象，分别实现代码下方的几个函数，满足以下需求：
 
 // 假设id和name均不会重复，根据输入name找到对应的id
@@ -94,4 +157,5 @@ function getListWithLRD() {
 // 把这个对象中所有的名字以“后序遍历”的方式全部输出到console中
     </script>
 </body>
+
 </html>

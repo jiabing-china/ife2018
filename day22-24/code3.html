@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
-    
+
 </body>
 <script>
     /*
@@ -15,41 +17,67 @@
 注意需要去除的空格，包括全角、半角空格
 暂时不需要学习和使用正则表达式的方式
 */
-function diyTrim(str) {
-    var result = "";
+    function diyTrim(str) {
+        var result = "";
 
-    // do something
+        // do something
 
-    return result
-}
 
-// 测试用例
-console.log(diyTrim(' a f b    ')); // ->a f b
-console.log(diyTrim('    ffdaf    ')); // ->ffdaf
-console.log(diyTrim('1    ')); // ->1
-console.log(diyTrim('　　f')); // ->f
-console.log(diyTrim('  　  a f b 　　 ')); // ->a f b
-console.log(diyTrim(' ')); // ->
-console.log(diyTrim('　')); // ->
-console.log(diyTrim('')); // ->
+        for (var i = 0; i < str.length; i++) {
+            // debugger;
+            if (str.indexOf(" ") == 0) {
+                str = str.substr(1);
+            }
+            if (str.indexOf("　") == 0) {
+                str = str.substr(1);
+            }
+            if (str.lastIndexOf(" ") == 0) {
+                str = str.substr(-1);
+            }
+            if (str.lastIndexOf("　") == 0) {
+                str = str.substr(-1);
+            }
+        }
+        result = str;
+        return result;
+    }
 
-/*
-去掉字符串str中，连续重复的地方
-*/
-function removeRepetition(str) {
-    var result = "";
+    // 测试用例
+    // console.log(diyTrim(' a f b    ')); // ->a f b
+    // console.log(diyTrim('    ffdaf    ')); // ->ffdaf
+    // console.log(diyTrim('1    ')); // ->1
+    // console.log(diyTrim('　　f')); // ->f
+    // console.log(diyTrim('  　  a f b 　　 ')); // ->a f b
+    // console.log(diyTrim(' ')); // ->
+    // console.log(diyTrim('　')); // ->
+    // console.log(diyTrim('')); // ->
 
-    // do something
+    /*
+    去掉字符串str中，连续重复的地方
+    */
+    function removeRepetition(str) {
+        var result = "";
+        // do something
+        // result += str[0];
+        for(var i = 0;i<str.length;i++){
+            // debugger;
+           if(str[i] != str.substr(i+1,1))
+           {
+               result += str[i];
+           }
+            
+        }
 
-    return result;
-}
+        return result;
+    }
 
-// 测试用例
-console.log(removeRepetition("aaa")); // ->a
-console.log(removeRepetition("abbba")); // ->aba
-console.log(removeRepetition("aabbaabb")); // ->abab
-console.log(removeRepetition("")); // ->
-console.log(removeRepetition("abc")); // ->abc
+    // 测试用例
+    console.log(removeRepetition("aaa")); // ->a
+    console.log(removeRepetition("abbba")); // ->aba
+    console.log(removeRepetition("aabbaabb")); // ->abab
+    console.log(removeRepetition("")); // ->
+    console.log(removeRepetition("abc")); // ->abc
 // 如以上代码，分别实现 diyTrim 及 removeRepetition 函数，并跑通代码中的测试用例。
 </script>
+
 </html>
