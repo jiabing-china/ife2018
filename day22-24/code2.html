@@ -1,12 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
-    
+    <div>
+        <label>String A:
+            <input id="radio-a" type="radio" checked="true" name="str-obj" value="a">
+        </label>
+        <textarea id="str-a"></textarea>
+        <label>String B:
+            <input id="radio-b" type="radio" name="str-obj" value="b">
+        </label>
+        <textarea id="str-b"></textarea>
+        <label>Num A：<input id="num-a" type="number" value="0"></label>
+        <label>Num B：<input id="num-b" type="number" value="1"></label>
+    </div>
+    <div>
+        <button>获取当前选中输入的内容长度</button></br>
+        <button>当前选中输入中的第3个字符</button></br>
+        <button>把两个输入框的文字连接在一起输出（concat）</button></br>
+        <button>输入B中的内容，在输入A的内容中第一次出现的位置（indexOf）</button></br>
+        <button>输入A中的内容，在输入B的内容中最后一次出现的位置（lastIndexOf）</button></br>
+        <button>使用slice获取选中输入框内容的部分内容，参数为num-a及num-b</button></br>
+        <button>当前选中输入框的行数</button></br>
+        <button>使用substr获取选中输入框内容的子字符串，参数为num-a及num-b</button></br>
+        <button>把所选输入框中的内容全部转为大写</button></br>
+        <button>把所选输入框中的内容全部转为小写</button></br>
+        <button>把所选输入框中内容的半角空格全部去除</button></br>
+        <button>把所选输入框中内容的a全部替换成另外一个输入框中的内容</button>
+    </div>
+    结果为：<p id="result"></p>
+    <script>
+        //     基于如上HTML，实现需求
+        // 按照HTML中按钮的描述以此实现功能
+        // 计算结果显示在 id 为 result 的 P 标签中
+        var btn = document.getElementsByTagName('button');
+        var stra;
+        var strb;
+        var result = document.getElementById('result');
+        var numa = document.getElementById('num-a');
+        var numb = document.getElementById('num-b');
+        var radio1 = document.querySelector("#radio-a");
+        var radio2 = document.querySelector("#radio-b");
+        function gettextarea() {
+            stra = document.getElementById('str-a');
+            strb = document.getElementById('str-b');
+        }
+        // 获取当前选中输入的内容长度
+        btn[0].onclick = function () {
+            var input = document.getElementsByName("str-obj");
+            if (radio1.checked == true) {
+                result.innerHTML = (stra.value).length;
+            }
+            else if (radio2.checked == true) {
+                result.innerHTML = (strb.value).length;
+            }
+            // for(var i =0;i<input.length;i++){
+            //     if(input[i].checked){
+            //         if(i==0){
+            //             result.innerHTML = (stra.value).length;
+            //         }
+            //         else{
+            //             result.innerHTML = (strb.value).length;
+            //         }
+            //     }
+            // }
+
+        }
+        // 当前选中输入中的第3个字符
+        btn[1].onclick = function () {
+            var input = document.getElementsByName("str-obj");
+            for (var i = 0; i < input.length; i++) {
+                if (input[i].checked) {
+                    if (i == 0) {
+                        getvaluelen(stra.value);
+                    }
+                    else {
+                        getvaluelen(strb.value);
+                    }
+                    function getvaluelen(v) {
+                        debugger;
+                        if (v.length < 3) {
+                            result.innerHTML = "输入长度小于三！";
+                        }
+                        else {
+                            result.innerHTML = v[2];
+                        }
+                    }
+                }
+            }
+
+        }
+        // 把两个输入框的文字连接在一起输出（concat）
+        btn[2].onclick = function () {
+            // result.innerHTML = stra.value +""+strb.value;
+            result.innerHTML = (stra.value).concat(strb.value);
+        }
+        // 输入B中的内容，在输入A的内容中第一次出现的位置（indexOf）
+        btn[3].onclick = function () {
+            result.innerHTML = (stra.value).indexOf(strb.value);
+        }
+        // 输入A中的内容，在输入B的内容中最后一次出现的位置（lastIndexOf）
+        btn[4].onclick = function () {
+            result.innerHTML = (strb.value).lastIndexOf(stra.value);
+        }
+        // 使用slice获取选中输入框内容的部分内容，参数为num-a及num-b
+        // arrayObject.slice(start,end)
+        btn[5].onclick = function () {
+            result.innerHTML = (stra.value).slice(numa.value, numb.value);
+        }
+        // 当前选中输入框的行数
+        btn[6].onclick = function () {
+            gettextarea();
+            if (radio1.checked == true) {
+                // trim()去除字符串的头尾空格
+                // 100-40-20:40:30,55
+                // split(/-|:|,/); 
+                // 2020年7月9日22:19:31
+                // 有问题，明早研究一下
+                result.innerHTML = stra.value.split(/\r?\n\s*/).length;
+                // result.innerHTML =stra.value.split(/\n/).length;
+                // console.dir(stra.createTextRange());
+
+
+            }
+            if (radio2.checked == true) {
+                result.innerHTML = strb.value.trim().split(/\r?\n\s*/).length;
+            }
+        }
+        // 使用substr获取选中输入框内容的子字符串，参数为num-a及num-b
+        btn[7].onclick = function(){
+            gettextarea();
+            result.innerHTML = (stra.value).substr(numa.value, numb.value);
+        }
+        // 把所选输入框中的内容全部转为大写
+        btn[8].onclick = function(){
+            gettextarea();
+            result.innerHTML = (stra.value).toUpperCase();
+        }
+        // 把所选输入框中的内容全部转为小写
+        btn[9].onclick = function(){
+            gettextarea();
+            result.innerHTML = (stra.value).toLowerCase();
+        }
+        // 把所选输入框中内容的半角空格全部去除
+        btn[10].onclick = function(){
+            gettextarea();
+            result.innerHTML = (stra.value).replace(/(^\s*)|(\s*$)/g, '');
+        }
+        // 把所选输入框中内容的a全部替换成另外一个输入框中的内容
+          // 2020年7月9日22:19:31
+                // 有问题，明早研究一下
+        btn[11].onclick = function(){
+            gettextarea();
+            stra.value = strb.value;
+        }
+        
+        </script>
 </body>
+
 </html>
