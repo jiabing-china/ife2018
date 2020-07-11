@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="queue-input" type="text">
+    <p id="queue-cont">队列内容：apple-&gt;pear</p>
+    <button id="in-btn">入队</button>
+    <button id="out-btn">出队</button>
+    <button id="font-btn">打印队头元素内容</button>
+    <button id="empty-btn">判断队列是否为空</button>
+
+    <script>
+        // 练习如何使用数组来实现队列，综合考虑使用数组的 push，pop，shift，unshift操作
+        // 基于以上代码，实现如按钮中描述的功能：
+
+        // 实现如阅读材料中，队列的相关入队、出队、获取队头、判空的操作
+        // 队头对应数组中最后一个元素
+        // 入队和出队操作后，需要在 id 为 queue-cont 的 p 标签中更新显示队列中的内容，队头在最右侧，中间用 -> 连接（练习使用数组的join方法）
+        //push，   数组尾部追加
+        // pop，   数组尾部删除        
+        // unshift 数组头部追加
+        // shift， 数组头部删除 
+        var queue = ["apple", "pear"];
+        var copyqueue;
+        var queuecont = document.getElementById('queue-cont');
+        var queueinput = document.getElementById('queue-input');
+        // 入队
+        var inbtn = document.getElementById('in-btn');
+        inbtn.onclick = function () {
+            if (queueinput.value != '') {
+                queue.unshift(queueinput.value);
+               
+            }
+            copyqueue =  queue;
+            printqueue();
+        }
+        // 出队
+        var outbtn = document.getElementById('out-btn');
+        outbtn.onclick = function () {
+    
+            console.log(copyqueue.shift());
+            // console.log(queueinput.value);
+            console.log(queue);
+            // if (copyqueue.shift() == queueinput.value) {
+            //     queue.unshift(queueinput.value);
+            // }
+            printqueue();
+        }
+        var fontbtn = document.getElementById('font-btn');
+        fontbtn .onclick = function(){
+            queuecont.innerHTML = queue[queue.length-1];
+        }
+        var emptybtn = document.getElementById('empty-btn');
+        emptybtn.onclick = function(){
+            if(queue.length == 0){
+                queuecont.innerHTML = '队列为空！';
+            }
+            else{
+                queuecont.innerHTML = '队列不为空！';
+            }
+        }
+        //公共打印的方法
+        function printqueue() {
+            queuecont.innerHTML = queue.join('->');
+        }
+
+    </script>
+</body>
+
+</html>

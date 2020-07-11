@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var arr1 = [43, 54, 4, -4, 84, 100, 58, 27, 140];
+        // 将上面数组分别按从大到小以及从小到大进行排序后在console中输出
+        // var smalltobig = arr1.sort(function (a, b) {
+        //     return a - b;
+        // });
+        // console.log('从小到大：' + smalltobig);
+
+        // var bigtosmall = arr1.sort(function (a, b) {
+        //     return b-a;
+        // });
+        // console.log('从大到小：' + bigtosmall);
+
+
+        var arr2 = ['apple', 'dog', 'cat', 'car', 'zoo', 'orange', 'airplane'];
+        // 将上面数组分别按字母顺序a-z及z-a进行排序，在console中输出
+        //  var az = arr2.sort();
+        // console.log('a-z:' + az);
+
+        // var za = arr2.sort().reverse();
+        // console.log('z-a:' + za);
+
+        // 这个应该是出题人想要的答案
+        // var za = arr2.sort(function (a, b) {
+        //     var nameA = a.toLowerCase(); // ignore upper and lowercase
+        //     var nameB = b.toLowerCase(); // ignore upper and lowercase
+        //     if (nameA < nameB) {
+        //         return 1;
+        //     }
+        //     if (nameA > nameB) {
+        //         return -1;
+        //     }
+        //     return 0;
+        // });
+        //  console.log('z-a:' + za);
+        var arr3 = [[10, 14], [16, 60], [7, 44], [26, 35], [22, 63]];
+        // 将上面的二维数组，按照每个元素中第二个数从大到小的顺序进行排序输出，输出结果应该为：
+        //我非常纳闷我怎么一开始写的不对？为什么？人出现了问题。。。
+        // console.log("arr3按第二个数从大到小排序：");
+        // console.log(arr3.sort((a, b) => b[1] - a[1]));
+        // var  arr3bgtosm = arr3.sort(function (a, b) {
+        //     return (b[1]) - (a[1]);
+        // })
+        // console.log(arr3bgtosm);
+        // console.log("arr3按第一个数从大到小排序：");
+        // console.log(arr3.sort((a, b) => b[0] - a[0]));
+        // [[22, 63], [16, 60], [7, 44], [26, 35], [10, 14]]
+
+        var arr4 = [
+            {
+                id: 1,
+                name: 'candy',
+                value: 40
+            }, {
+                id: 2,
+                name: 'Simon',
+                value: 50
+            }, {
+                id: 3,
+                name: 'Tony',
+                value: 45
+            }, {
+                id: 4,
+                name: 'Annie',
+                value: 60
+            }
+        ];
+        // 将上面数组分别按元素对象的value值从小到大进行排序后输出
+        var arr4smtobg = arr4.sort((a,b)=>a.value - b.value);
+        console.log(arr4smtobg);
+    </script>
+</body>
+
+</html>
