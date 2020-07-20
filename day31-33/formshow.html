@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>form表单</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #table-wrapper table {
+            border-collapse: collapse;
+        }
+
+        #table-wrapper th {
+            width: 100px;
+            border: 1px solid black;
+            padding: 0;
+        }
+
+        #table-wrapper td {
+            width: 100px;
+            border: 1px solid black;
+            text-align: center;
+        }
+        #table111 table {
+            border-collapse: collapse;
+        }
+
+        #table111 th {
+            width: 100px;
+            border: 1px solid black;
+            padding: 0;
+        }
+
+        #table111 td {
+            width: 100px;
+            border: 1px solid black;
+            text-align: center;
+        }
+        .chart{
+            display: flex;
+            justify-content: center;
+        }
+        .bar{
+            
+            flex: 1;
+            /* width: 300px;
+            height: 300px; */
+            /* border: 1px solid #333333; */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="region-select">
+        <input type="checkbox" checkbox-type="all" name="regionall" value="0">全部<input class="region" type="checkbox"
+            name="region" value="1">华东<input class="region" type="checkbox" name="region" value="2">华北<input class="region"
+            type="checkbox" name="region" value="3">华南</div>
+
+    <div id="product-select">
+        <input type="checkbox" checkbox-type="all" name="regionall" value="0">全部<input class="product" type="checkbox"
+            name="product" value="1">手机<input class="product" type="checkbox" name="product" value="2">笔记本<input class="product"
+            type="checkbox" name="product" value="3">智能音箱</div>
+    <div id="table-wrapper">
+    </div>
+    <div class="chart">
+        <div class="bar">
+            <svg id="bar" version="1.1" baseProfile="full" width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+                <!-- <text x="100" y="12" font-size="12" text-anchor="middle" fill="black">画柱状图</text>
+                <line x1="0" y1="300" x2="300" y2="300" stroke='black' stroke-width='5'></line>
+                <line x1="0" y1="300" x2="0" y2="0" stroke='black' stroke-width='5'></line>
+                <rect x="10" y="180" width="10" height="120" fill="red" /> -->
+            </svg>
+        </div>
+        <div class="bar">
+            <svg id="bar1" version="1.1" baseProfile="full" width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+                <text x="100" y="12" font-size="12" text-anchor="middle" fill="black">画柱状图</text>
+                <line x1="0" y1="300" x2="300" y2="300" stroke='black' stroke-width='5'></line>
+                <line x1="0" y1="300" x2="0" y2="0" stroke='black' stroke-width='5'></line>
+                <rect x="10" y="180" width="10" height="120" fill="red" />
+            </svg>
+        </div>
+    </div>
+
+    <script src="./ife31data.js"></script>
+
+    <script src="../day34-36/bar.js"></script>
+    <script src="./app.js"></script>
+</body>
+
+</html>

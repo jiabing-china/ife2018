@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #table-wrapper table {
+            border-collapse: collapse;
+        }
+
+        #table-wrapper th {
+            width: 100px;
+            border: 1px solid black;
+            padding: 0;
+        }
+
+        #table-wrapper td {
+            width: 100px;
+            height: 25px;
+            border: 1px solid black;
+            text-align: center;
+        }
+        .chart{
+            margin-top: 1px;
+            width: 100%;
+            /* border: 1px solid black; */
+            height: 500px;
+            box-sizing: border-box;
+            display: flex;
+        }
+        .bar{
+            flex: 1;
+            padding-left: 100px;
+            padding-top: 50px;
+            /* background-color: pink; */
+        }
+        .line{
+            flex: 1;
+            background-color: skyblue;
+        }
+        .clearfix::before, 
+        .clearfix::after { 
+            content: ""; 
+            display: table; 
+            }
+        .clearfix::after {
+             clear: both;
+            }
+            #bar{
+                margin: 0 auto;
+            }
+        </style>
+</head>
+
+<body>
+    <div id="region-select">
+        <input type="checkbox" checkbox-type="all" name="regionall" value="0">全部<input class="region" type="checkbox"
+            name="region" value="1">华东<input class="region" type="checkbox" name="region" value="2">华北<input class="region"
+            type="checkbox" name="region" value="3">华南</div>
+
+    <div id="product-select">
+        <input type="checkbox" checkbox-type="all" name="regionall" value="0">全部<input class="product" type="checkbox"
+            name="product" value="1">手机<input class="product" type="checkbox" name="product" value="2">笔记本<input class="product"
+            type="checkbox" name="product" value="3">智能音箱</div>
+    <div id="table-wrapper">
+        <table>
+            <thead>
+                <th>商品</th>
+                <th>地区</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+                <th>11</th>
+                <th>12</th>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="chart">
+        <div class="bar">
+            <svg id="bar" version="1.1" baseProfile="full" width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+                <!-- <text x="100" y="12" font-size="12" text-anchor="middle" fill="black">画柱状图</text>
+                <line x1="0" y1="300" x2="300" y2="300" stroke='black' stroke-width='5'></line>
+                <line x1="0" y1="300" x2="0" y2="0" stroke='black' stroke-width='5'></line>
+                <rect x="10" y="180" width="10" height="120" fill="red" /> -->
+            </svg>
+        </div>
+        <div class="line"></div>
+    </div>
+</body>
+<script src="./ife31data.js"></script>
+<script src="./app.js"></script>
+<script src="./checkbox.js"></script>
+<script src='./bar.js'></script>
+<script src="./table.js"></script>
+
+
+</html>

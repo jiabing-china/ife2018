@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {}
+    </style>
+</head>
+
+<body>
+    <!-- 画一条线
+        画一个矩形
+        画一个圆形
+        显示一些文字
+        画一朵花
+        画一颗小树 -->
+    <svg version="1.1" baseProfile="full" width="300" height="100" xmlns="http://www.w3.org/2000/svg">
+        <text x="100" y="12" font-size="12" text-anchor="middle" fill="black">画一条线</text>
+        <line x1="0" y1="20" x2="200" y2="20" stroke='red' stroke-width='10'></line>
+    </svg>
+    <br />
+    <svg version="1.1" baseProfile="full" width="300" height="100" xmlns="http://www.w3.org/2000/svg">
+        <text x="100" y="12" font-size="12" text-anchor="middle" fill="black">画一个矩形</text>
+        <rect x="50" y="15" width="100" height="100" fill="red" />
+    </svg>
+    <br />
+    <svg version="1.1" baseProfile="full" width="300" height="100" xmlns="http://www.w3.org/2000/svg">
+        <text x="100" y="12" font-size="12" text-anchor="middle" fill="black"> 画一个圆形</text>
+        <circle cx="100" cy="75" r="20" fill="pink" />
+    </svg>
+    <br />
+    <svg version="1.1" baseProfile="full" width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+        <text x="100" y="12" font-size="12" text-anchor="middle" fill="black"> 画一朵花</text>
+        <circle cx="100" cy="100" r="20" fill="pink"></circle>
+        <circle cx="120" cy="120" r="20" fill="pink"></circle>
+        <circle cx="80" cy="120" r="20" fill="pink"></circle>
+        <circle cx="100" cy="140" r="20" fill="pink"></circle>
+        <circle cx="100" cy="120" r="15" fill="yellow"></circle>
+        <circle cx="100" cy="120" r="5" fill="red"></circle>
+    </svg>
+    <br />
+    <svg version="1.1" baseProfile="full" width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+        <text x="100" y="12" font-size="12" text-anchor="middle" fill="black"> 画一棵树 算了 ，饶了我吧</text>
+        <!--  <path d="M 20 230 Q 40 205, 50 230 T 90230" /> -->
+        <!-- <polygon points="150 0, 200 0, 200 150, 150 150"/>  -->
+        <!-- <polyline points="60 110, 65 120, 70 115, 75 130, 80 125, 85 140, 90 135, 95 150, 100 145" stroke='green'/> -->
+    </svg>
+    <br />
+    <svg id="bar" version="1.1" baseProfile="full" width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+        <!-- <text x="100" y="12" font-size="12" text-anchor="middle" fill="black">画柱状图</text>
+        <line x1="0" y1="300" x2="300" y2="300" stroke='black' stroke-width='5'></line>
+        <line x1="0" y1="300" x2="0" y2="0" stroke='black' stroke-width='5'></line>
+        <rect x="10" y="180" width="10" height="120" fill="red" /> -->
+    </svg>
+    <br />
+    <script src="./bar.js"></script>
+    <script>
+
+
+        // function 绘制一个柱状图(柱状图数据) {
+        //     定义好柱状图绘制区域的高度，宽度，轴的高度，宽度
+        //     定义好每一个柱子的宽度及柱子的间隔宽度
+        //     定义好柱子颜色，轴的颜色
+
+        //     拿到柱状图中的最大值Max
+        //     根据Max和你用来绘制柱状图图像区域的高度，进行一个数据和像素的折算比例
+
+        //     绘制横轴及纵轴
+        //     遍历数据 {
+        //         计算将要绘制柱子的高度和位置
+        //         绘制每一个柱子
+        //     }
+        // }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0
+        }
+        input{
+            outline-style: none ;
+            border: 1px solid #ccc; 
+            /* border-radius: 3px; */
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            padding: 13px 14px;
+            width: 200px;
+            font-size: 14px;
+            font-weight: 400;
+            font-family: "Microsoft soft";
+        }
+        .email-sug{
+            width: 228px;
+            border: 1px solid #ccc; 
+            border-top: 0px;
+            display: none;
+        }
+      
+        ul li{
+            /* border-radius: 3px; */
+            padding: 13px 14px;
+            width: 200px;
+            font-size: 14px;
+            font-weight: 400;
+            font-family: "Microsoft soft";
+        }
+        
+        ul li:hover{
+            background-color: skyblue;
+        }
+        /* ul li:first-child{
+            background-color: pink;
+        } */
+        .choosekeyli{
+            background-color: pink;
+        }
+        .nochoosekeyli{
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <input id="email-input" type="text" placeholder="请输入邮箱" autofocus="autofocus">
+        <ul id="email-sug-wrapper" class="email-sug">
+        </ul>
+    </div>
+</body>
+<script>
+
+    var emailinput = document.getElementById('email-input');
+    var emailsug = document.getElementById('email-sug-wrapper');
+    var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+    var pinkli = 0;
+    // emailinput.onkeypress = function (e) {
+    //     console.log('keypress');
+    //     console.log(emailinput.value);
+    // }
+    // emailinput.onkeydown = function (e) {
+    //     console.log(emailinput.value);
+    //     console.log('keydown');
+    // }
+    //不对,上面都需要按下Enter才能捕捉到最后的输出
+    // emailinput.oninput = function (e) {
+    //     console.log(e); 
+    // }
+    //按Enter无效果
+    //     获取用户输入，生成提示框中的提示内容，将提示内容添加到email-sug-wrapper中
+    //     控制email-sug-wrapper的显示/隐藏状态
+    emailinput.onkeyup = function (e) {
+        emailsugisshow();
+    }
+    // emailinput.onchange = function (e) {
+    //     emailsugisshow();
+    // }
+    // 拿到input输入框的输入内容trim后返回
+    function getinputval() {
+        return emailinput.value.trim();
+    }
+    // 获取用户输入
+    //     遍历postfixList {
+    //         把用户输入和每一个postfix进行结合成为每一个Li
+    //     }
+    //     返回生成的提示内容
+    function outlicontent() {
+        // 2020年7月12日22:23:19需要调试，删除时，再次拼接的不对
+
+        // 邮箱后缀List参考 
+        var valinit = getinputval();
+        //     if 用户输入含有@ {
+        //     用来拼接的用户输入内容 = 只使用@之前的字符串
+        //     用来前缀匹配的用户输入内容 = @之后的字符串
+        // }
+        var newpostfixList = [];
+        var val;
+        val = valinit;
+        var valnext;
+        if (valinit.indexOf("@") != -1) {
+            val = valinit.split('@')[0];
+            valnext = (valinit.split('@')[1]).trim();
+        }
+        // 判断valnext是否存在于postfixList
+        // 如果存在则返回这些邮箱数组；
+        // 如果不存在，则返回之前的邮箱数组
+        postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+        if (valnext != undefined && valnext != '') {
+
+            for (var i = 0; i < postfixList.length; i++) {
+                if (postfixList[i].indexOf(valnext) != -1) {
+                    newpostfixList.push(postfixList[i]);
+                }
+            }
+            if (newpostfixList.length > 0) {
+                postfixList = newpostfixList;
+            }
+        }
+        var str = '';
+        for (var i = 0; i < postfixList.length; i++) {
+            str += '<li>'
+            str += htmlEncodeByRegExp(val) + "@" + postfixList[i];
+            str += '</li>'
+        }
+        return str;
+    }
+    // 获取生成提示框中的提示内容
+    // 将内容添加到email-sug-wrapper中
+    function addlicontent() {
+        emailsug.innerHTML = outlicontent();
+    }
+    // 控制email-sug - wrapper的显示 / 隐藏状态
+    function emailsugisshow() {
+        var val = getinputval();
+        if (val != '') {
+            addlicontent();
+            emailsugshow();
+            // emailsug.innerHTML = emailinput.value;
+        }
+        else {
+            emailsughidden();
+        }
+    }
+    // 做具体隐藏提示框的操作
+    function emailsughidden() {
+        emailsug.style.display = 'none';
+    }
+    //     做具体显示提示框的操作
+    function emailsugshow() {
+        emailsug.style.display = 'block';
+        emailsug.getElementsByTagName('li')[0].className = 'choosekeyli';
+        watchkey();
+        lionclick();
+    }
+    function watchkey() {
+        //         我们给提示框加上3个按键的功能，分别是回车和上下键，使得可以通过键盘操作进行提示框的选择
+
+        // 当有提示框的时候，默认第一个提示为被选择状态，用一个和鼠标滑过不一样的背景色来标识
+        // 当有输入框的时候，按上键，可以向上移动选择状态，如果按键之前的被选择提示是第一个，则被选状态移到最下面一个
+        // 当有输入框的时候，按下键，可以向下移动选择状态，如果按键之前的被选择提示是最后一个，则被选状态移到第一个
+        // 当有输入框时，按回车键，则将当前被选中状态的提示内容，放到输入框中，并隐藏提示框
+        // 当没有输入框的时候，这3个键盘按键无响应
+        // 当用户输入发生改变的时候，选择状态都重新切回到第一个提示
+        // emailinput.onkeydown = function (e) {
+        //     console.log(e.keyCode);
+        // }
+        document.onkeyup = chang_page;
+        function chang_page() {
+
+            if (event.keyCode == 13) {
+                var liarr = document.getElementsByTagName('li');
+                emailinput.value = htmlDecodeByRegExp(liarr[pinkli].innerHTML);
+                emailsughidden();
+
+            }
+            if (event.keyCode == 38) {
+
+                pinkli--;
+                if (pinkli < 0) {
+                    pinkli = postfixList.length - 1;
+                }
+                keychangeli(pinkli);
+            }
+            if (event.keyCode == 40) {
+
+                pinkli++;
+                if (pinkli > postfixList.length - 1) {
+                    pinkli = 0;
+                }
+                keychangeli(pinkli);
+            }
+            if (event.keyCode == 27) {
+                emailinput.select();
+                //ESC的问题
+                 emailsughidden();
+            }
+        }
+    }
+    function keychangeli(pinkli) {
+        var keychangeli = emailsug.getElementsByTagName('li');
+        for (var i = 0; i < postfixList.length; i++) {
+            keychangeli[i].className = 'nochoosekeyli';
+        }
+        keychangeli[pinkli].className = 'choosekeyli';
+    }
+
+    //     上面我们只完成了提示，但提示还没有直接作用到选择中，我们现在完成以下需求：
+
+    // 使用CSS实现：鼠标滑过提示框的某一个提示时，这个提示内容背景色变化，表示鼠标经过了这个DOM节点
+    // 鼠标如果点击某个提示，则提示内容进入输入框，同时提示框消失
+    // 在上个步骤结束后，在输入框中任意再输入字符或删除字符，则重新开始出现提示框
+    // 设计
+    // 鼠标点击，是一个新的用户输入，所以我们需要有一个新的事件监听，那用哪一个DOM节点来监听这个鼠标事件呢？想一想前面提到的事件代理，选择一个合适的事件监听方式。
+
+    // 当监听到用户点击某一个提示的Li后，我们需要做的就是，把Li对应的提示内容，放在输入框中，同时隐藏提示框
+
+    // 代码结构
+
+    // 选择一个合适的DOM节点.监听鼠标点击 = function () {
+    //     if 被点击的是不是提示框中的Li节点 {
+    //         获取被点击Li对应的提示内容
+    //         将内容放到input输入框中
+    //         隐藏输入框
+    //     }
+    // }
+    // emailinput.value = ;
+    // emailsughidden();
+    function lionclick() {
+        var liarr = document.getElementsByTagName('li');
+        for (let i = 0; i < liarr.length; i++) {
+            //test是与for循环一起的，onlick是另外的事件
+            // test();
+            // function test(){
+            //     console.log(i);
+            // }
+            liarr[i].onclick = function () {
+                // emailinput.value = (liarr[i].innerHTML);
+                emailinput.value = htmlDecodeByRegExp(liarr[i].innerHTML);
+                //下面可以直接不解析标签innerText
+                // emailinput.value = htmlDecodeByRegExp(liarr[i].innerText);
+                emailsughidden();
+                emailinput.focus();
+            }
+        }
+    }
+    //  引用数据类型的问题
+    // var arr = [1, 2, 3];
+    // console.log(arr);
+    // arr.push(3);
+    // console.log(htmlEncodeByRegExp("&amp;"));
+
+
+    /*3.用正则表达式实现html转码*/
+    function htmlEncodeByRegExp(str) {
+        var s = "";
+        if (str.length == 0) return "";
+        s = str;
+        //对用户输入进行转义
+        s = s.replace(/&/g, "&amp;");
+        s = s.replace(/</g, "&lt;");
+        s = s.replace(/>/g, "&gt;");
+        s = s.replace(/ /g, "&nbsp;");
+        s = s.replace(/"/g, '&quot;');
+        return s;
+    }
+    /*4.用正则表达式实现html解码*/
+    function htmlDecodeByRegExp(str) {
+        var s = "";
+        if (str.length == 0) return "";
+        s = str;
+        s = s.replace(/&amp;/g, "&");
+        s = s.replace(/&lt;/g, "<");
+        s = s.replace(/&gt;/g, ">");
+        s = s.replace(/&nbsp;/g, " ");
+        s = s.replace(/&quot/g, "'");
+        return s;
+    }
+    //     一进入页面就将焦点放在输入框中
+    // autofocus="autofocus"
+    // 用户点击鼠标，进行提示选择后，焦点依然在输入框中
+    // emailinput.focus();
+    // 用户按ESC键的时候，对用户输入进行全选
+</script>
+
+</html>
