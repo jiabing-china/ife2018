@@ -6,7 +6,6 @@ function savedata() {
         console.log('无本地数据，初始化');      
     }
     else{
-        
         console.log('有本地数据，保存编辑的数据');
     }
 
