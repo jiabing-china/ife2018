@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body οnhashchange="currLocation();">
+    <button id="a">A</button>
+    <button id="b">B</button>
+    <button id="c">C</button>
+    <div id="cont"></div>
+    <script>
+        var a = document.querySelector('#a');
+        var b = document.querySelector('#b');
+        var c = document.querySelector('#c');
+        var btns = document.querySelectorAll('button');
+        var cont = document.querySelector('div');
+        Array.from(btns).forEach((item, index) => {
+            item.onclick = () => {
+                cont.innerHTML = item.innerHTML;
+                currLocation();
+            }
+        })
+      
+        function currLocation() {
+            console.log(window.location);
+        }
+        window.on
+        // 基于以上HTML，点击对应按钮时候，改变div中的内容为按钮的文字。
+        // 刷新页面的时候，保持div中的显示
+        // 页面URL copy再打开后，保留渲染状态
+        // 通过location.hash来实现
+    </script>
+</body>
+
+</html>

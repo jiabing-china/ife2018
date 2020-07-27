@@ -40,6 +40,7 @@ function inputchange(inputdom) {
             }
             getrp();
             inputdom[0].checked = flag;
+            saveinput();//监听tbody下的input
         }
     }
 }

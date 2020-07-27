@@ -35,15 +35,15 @@ function getrpdata(item1, item2) {
                 rpdata.push(item.sale);
             }
         })
+        // console.log('加载LocalStorage数据');
+        
     } else {
         sourceData.forEach((item, index) => {
             if (item.region == item1 && item.product == item2) {
                 rpdata.push(item.sale);
             }
         })
+        // console.log('无LocalStorage数据，加载json数据');
     }
-
-}
-function buildtable() {
 
 }
